@@ -40,14 +40,14 @@ function showPage(list, page){
 
 function appendPageLinks(list){
     const mainDiv = document.querySelector('.page'); //the main div
-    const buttonDiv = document.createElement('div'); //the div the buttons will go into
-        buttonDiv.className = 'pagination';
+    const linkDiv = document.createElement('div'); //the div the buttons will go into
+        linkDiv.className = 'pagination';
     const ul = document.createElement('ul');         //buttons go in a list here
     const totalPages = Math.ceil(list.length/pageSize); //How many buttons we need
     
     //appends a div with an empty ul to the main div
-    mainDiv.appendChild(buttonDiv);
-    buttonDiv.appendChild(ul);
+    mainDiv.appendChild(linkDiv);
+    linkDiv.appendChild(ul);
     
     //adds a numbered button into the ul for every page
     for(let i = 1; i<=totalPages; i++) { 
@@ -57,6 +57,10 @@ function appendPageLinks(list){
         link.textContent = i;
         li.appendChild(link);
         ul.appendChild(li);
+        //adds class to the first active page
+        if(i === 1) {
+            link.className = 'active';
+        }
     }
     
 };
