@@ -15,18 +15,11 @@ const pageSize = 10;
 
 
 /*** 
-   Create the `showPage` function to hide all of the items in the 
-   list except for the ten you want to show.
-
-   Pro Tips: 
-     - Keep in mind that with a list of 54 students, the last page 
-       will only display four.
-     - Remember that the first student has an index of 0.
-     - Remember that a function `parameter` goes in the parens when 
-       you initially define the function, and it acts as a variable 
-       or a placeholder to represent the actual function `argument` 
-       that will be passed into the parens later when you call or 
-       "invoke" the function 
+  showPage is a function to show the page a user clicks on. It will show pageSize elements per page.
+  @param list- An array of items in the UL
+  @param page- the number of the page to show
+  
+  A quick note- I didn't read ahead in the instructions and ended up making my 'if' statement very differently than what was intended! I'm confident in the logic behind it, but feedback on it is appreciated.
 ***/
 
 function showPage(list, page){
