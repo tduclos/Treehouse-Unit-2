@@ -34,14 +34,34 @@ function showPage(list, page){
 
 
 /*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
+   appendPageLinks is a function to add numbered buttons to the bottom of the page, each corresponding to a page the user can view
+   @param list- An array of items in the UL
 ***/
 
-function appendPageLinks(){
+function appendPageLinks(list){
+    const mainDiv = document.querySelector('.page'); //the main div
+    const buttonDiv = document.createElement('div'); //the div the buttons will go into
+        buttonDiv.className = 'pagination';
+    const ul = document.createElement('ul');         //buttons go in a list here
+    const totalPages = Math.ceil(list.length/pageSize); //How many buttons we need
+    
+    //appends a div with an empty ul to the main div
+    mainDiv.appendChild(buttonDiv);
+    buttonDiv.appendChild(ul);
+    
+    //adds a numbered button into the ul for every page
+    for(let i = 1; i<=totalPages; i++) { 
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.setAttribute('href', '#');
+        link.textContent = i;
+        li.appendChild(link);
+        ul.appendChild(li);
+    }
     
 };
 
+//show page 1
 showPage(listItems, 1);
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+//append page with pagination buttons
+appendPageLinks(listItems);
