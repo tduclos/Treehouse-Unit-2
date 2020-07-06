@@ -23,8 +23,8 @@ const pageSize = 10;
 ***/
 
 function showPage(list, page){
-        for(let i=0; i<list.length;i++){
-          if((Math.floor(i/pageSize)+1)===page){
+        for(let i = 0; i < list.length; i++){
+          if((Math.floor(i / pageSize) + 1) === page){
              list[i].style.display = '';
              }else{
              list[i].style.display = 'none';    
@@ -50,19 +50,34 @@ function appendPageLinks(list){
     linkDiv.appendChild(ul);
     
     //adds a numbered button into the ul for every page
-    for(let i = 1; i<=totalPages; i++) { 
+    for(let i = 1; i <= totalPages; i++) { 
         const li = document.createElement('li');
         const link = document.createElement('a');
         link.setAttribute('href', '#');
         link.textContent = i;
         li.appendChild(link);
         ul.appendChild(li);
+        
+        //listen for clicks on links and change the page accordingly
+        link.addEventListener('click', (e) => { 
+            //show page corresponding with clicked link
+            showPage(list, i);
+            //find and remove active class from inactive pages
+            const activeLinks = document.getElementsByClassName('active');
+            for(let i = 0; i < activeLinks.length; i++) {
+                activeLinks[i].classList.remove('active');
+            }
+            //add active class to the active page
+            e.target.classList.add('active');
+        });  
+        
         //adds class to the first active page
         if(i === 1) {
             link.className = 'active';
         }
-    }
-    
+        
+        
+    };
 };
 
 //show page 1
